@@ -37,7 +37,7 @@ public class UserDAO implements Serializable {
         return new UserDTO(username, null, fullName, email, sendNotification, roleID);
     }
     
-    public void listUsers(String name, int roleID) throws NamingException, SQLException {
+    public void listUsers(String name) throws NamingException, SQLException {
         if (name == null) {
             name = "";
         }
@@ -46,16 +46,10 @@ public class UserDAO implements Serializable {
         ResultSet res = null;
         try {
             String sql = SQLSELECTNOPASSWORD + "WHERE (Username LIKE ? OR FullName LIKE ?) ";
-            if (roleID != 0) {
-                sql += "AND RoleID = ?";
-            }
             con = DatabaseUtil.getConnection();
             pre = con.prepareStatement(sql);
             pre.setString(1, "%" + name + "%");
             pre.setString(2, "%" + name + "%");
-            if (roleID != 0) {
-                pre.setInt(3, roleID);
-            }
             res = pre.executeQuery();
             while (res.next()) {                
                 if (this.usersList == null) {

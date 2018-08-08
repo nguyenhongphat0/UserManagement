@@ -54,7 +54,7 @@ public class SearchAction {
     public String execute() throws Exception {
         this.userDAO = new UserDAO();
         this.roleDAO = new RoleDAO();
-        userDAO.listUsers(name, role);
+        userDAO.listUsers(name);
         roleDAO.listRoles();
         roleDAO.countUserInRole(userDAO.getUsersList());
         return "success";
