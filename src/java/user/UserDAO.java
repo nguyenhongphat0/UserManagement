@@ -20,12 +20,15 @@ import utils.DatabaseUtil;
  * @author nguyenhongphat0
  */
 public class UserDAO implements Serializable {
-    public static final String SQLSELECT = "SELECT Username, Password, FullName, Email, SendNotification, RoleID FROM Users ";
-    public static final String SQLSELECTNOPASSWORD = "SELECT Username, FullName, Email, SendNotification, RoleID FROM Users ";
+    public static final String SQLSELECT = "SELECT Username, FullName, Email, SendNotification, RoleID FROM Users ";
     private List<UserDTO> usersList;
 
     public List<UserDTO> getUsersList() {
         return usersList;
+    }
+
+    public void setUsersList(List<UserDTO> usersList) {
+        this.usersList = usersList;
     }
     
     public UserDTO fromResultSet(ResultSet res) throws SQLException {
@@ -38,14 +41,11 @@ public class UserDAO implements Serializable {
     }
     
     public void listUsers(String name) throws NamingException, SQLException {
-        if (name == null) {
-            name = "";
-        }
         Connection con = null;
         PreparedStatement pre = null;
         ResultSet res = null;
         try {
-            String sql = SQLSELECTNOPASSWORD + "WHERE (Username LIKE ? OR FullName LIKE ?) ";
+            String sql = SQLSELECT + "WHERE (Username LIKE ? OR FullName LIKE ?) ";
             con = DatabaseUtil.getConnection();
             pre = con.prepareStatement(sql);
             pre.setString(1, "%" + name + "%");
@@ -60,5 +60,26 @@ public class UserDAO implements Serializable {
         } finally {
             DatabaseUtil.closeConnection(con, pre, res);
         }
+    }
+    
+    public UserDTO checkLogin(String username, String password) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement pre = null;
+        ResultSet res = null;
+        UserDTO user = null;
+        try {
+            String sql = SQLSELECT + "WHERE (Username = ? AND Password = ?) ";
+            con = DatabaseUtil.getConnection();
+            pre = con.prepareStatement(sql);
+            pre.setString(1, username);
+            pre.setString(2, password);
+            res = pre.executeQuery();
+            if (res.next()) {
+                user = fromResultSet(res);
+            }
+        } finally {
+            DatabaseUtil.closeConnection(con, pre, res);
+        }
+        return user;
     }
 }

@@ -22,6 +22,7 @@
         </style>
     </head>
     <body>
+        <p>Welcome <b><s:property value="#session.USER.fullName"></s:property></b>! <a href="login.jsp">Logout</a></p>
         <s:form action="search">
             <s:textfield name="name" label="Search for name"></s:textfield>
             <s:hidden name="role" value="%{#request.role}"></s:hidden>
