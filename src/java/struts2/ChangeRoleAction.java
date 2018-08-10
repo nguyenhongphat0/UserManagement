@@ -64,9 +64,11 @@ public class ChangeRoleAction {
     
     @Action("changeRole")
     public String execute() throws Exception {
-        UserDAO dao = new UserDAO();
-        for (String username : usernames) {
-            dao.changeRole(username, roleID);
+        if (usernames != null) {
+            UserDAO dao = new UserDAO();
+            for (String username : usernames) {
+                dao.changeRole(username, roleID);
+            }
         }
         return "success";
     }
