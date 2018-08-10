@@ -82,4 +82,19 @@ public class UserDAO implements Serializable {
         }
         return user;
     }
+    
+    public boolean changeRole(String username, int roleID) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement pre = null;
+        try {
+            String sql = "UPDATE Users SET roleID = ? WHERE Username = ?";
+            con = DatabaseUtil.getConnection();
+            pre = con.prepareStatement(sql);
+            pre.setInt(1, roleID);
+            pre.setString(2, username);
+            return pre.executeUpdate() > 0;
+        } finally {
+            DatabaseUtil.closeConnection(con, pre);
+        }
+    }
 }

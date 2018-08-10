@@ -29,6 +29,10 @@ public class DatabaseUtil {
         if (res != null) {
             res.close();
         }
+        closeConnection(con, pre);
+    }
+    
+    public static void closeConnection(Connection con, PreparedStatement pre) throws SQLException {
         if (pre != null) {
             pre.close();
         }

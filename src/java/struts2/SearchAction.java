@@ -66,8 +66,6 @@ public class SearchAction {
         } else {
             // this user is not admin, he can only find himselft in the search result
             // so we put the user in session to the result instead of query the database
-            System.out.println(logged.getUsername());
-            System.out.println(logged.getFullName());
             if (logged.getUsername().contains(name) || logged.getFullName().contains(name)) {
                 List<UserDTO> res = new ArrayList<>();
                 res.add(logged);
