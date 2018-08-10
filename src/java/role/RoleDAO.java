@@ -33,7 +33,7 @@ public class RoleDAO implements Serializable {
         return rolesList;
     }
     
-    public void listRoles() throws SQLException, NamingException {
+    public List<RoleDTO> listRoles() throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement pre = null;
         ResultSet res = null;
@@ -42,15 +42,18 @@ public class RoleDAO implements Serializable {
             con = DatabaseUtil.getConnection();
             pre = con.prepareStatement(sql);
             res = pre.executeQuery();
-            while (res.next()) {                
-                if (this.rolesList == null) {
-                    this.rolesList = new ArrayList<>();
-                }
+            if (this.rolesList == null) {
+                this.rolesList = new ArrayList<>();
+            } else {
+                this.rolesList.clear();
+            }
+            while (res.next()) {
                 rolesList.add(fromResultSet(res));
             }
         } finally {
             DatabaseUtil.closeConnection(con, pre, res);
         }
+        return this.rolesList;
     }
     
     public void countUserInRole(List<UserDTO> usersList) {

@@ -5,15 +5,17 @@
         <group>
             <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/src/java/struts2/SearchAction.java</file>
             <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/web/META-INF/context.xml</file>
-            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/src/java/user/UserDTO.java</file>
-            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/src/java/utils/DatabaseUtil.java</file>
+            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/src/java/struts2/ChangeRoleAction.java</file>
             <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/web/WEB-INF/web.xml</file>
+            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/web/search.jsp</file>
+            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/web/register.jsp</file>
+            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/src/java/user/UserDTO.java</file>
+            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/web/login.jsp</file>
+            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/src/java/utils/DatabaseUtil.java</file>
             <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/src/java/role/RoleDTO.java</file>
+            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/src/java/struts2/LoginAction.java</file>
             <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/src/java/user/UserDAO.java</file>
             <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/src/java/role/RoleDAO.java</file>
-            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/database.sql</file>
-            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/web/index.html</file>
-            <file>file:/home/nguyenhongphat0/NetBeansProjects/UserManagement/web/search.jsp</file>
         </group>
     </open-files>
 </project-private>

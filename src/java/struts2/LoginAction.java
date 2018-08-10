@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionContext;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 import org.apache.struts2.convention.annotation.Results;
+import role.RoleDAO;
 import user.UserDAO;
 import user.UserDTO;
 
@@ -59,7 +60,10 @@ public class LoginAction {
             if (user.getFullName() == null) {
                 user.setFullName("");
             }
+            // Put logged user into session
             ActionContext.getContext().getSession().put("USER", user);
+            // Create a RoleDAO instance and put it to aplication context to get roles directly from OGNL of jsp page
+            ActionContext.getContext().getApplication().putIfAbsent("ROLER", new RoleDAO());
             return "success";
         } else {
             message = "Invalid username or password!";

@@ -31,7 +31,7 @@
             <s:hidden name="role" value="%{#request.role}"></s:hidden>
             <s:submit value="Search"></s:submit>
         </s:form>
-        <s:form action="changeRole" theme="simple" method="get">
+        <s:form action="changeRole" theme="simple">
             <s:if test="#session.USER.roleID == 1">
                 <s:select name="roleID" list="roleDAO.rolesList" listKey="roleID" listValue="'Change role to ' +roleName"></s:select>
                 <s:hidden name="searchName" value="%{#request.name}"></s:hidden>

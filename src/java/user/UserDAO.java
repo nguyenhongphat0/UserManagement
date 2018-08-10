@@ -21,6 +21,7 @@ import utils.DatabaseUtil;
  */
 public class UserDAO implements Serializable {
     public static final String SQLSELECT = "SELECT Username, FullName, Email, SendNotification, RoleID FROM Users ";
+    public static final String SQLINSERT = "INSERT INTO Users (Username, Password, FullName, Email, SendNotification, RoleID) VALUES (?, ?, ?, ?, ?, ?) ";
     private List<UserDTO> usersList;
 
     public List<UserDTO> getUsersList() {
@@ -92,6 +93,25 @@ public class UserDAO implements Serializable {
             pre = con.prepareStatement(sql);
             pre.setInt(1, roleID);
             pre.setString(2, username);
+            return pre.executeUpdate() > 0;
+        } finally {
+            DatabaseUtil.closeConnection(con, pre);
+        }
+    }
+    
+    public boolean register(UserDTO user) throws NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement pre = null;
+        try {
+            String sql = SQLINSERT;
+            con = DatabaseUtil.getConnection();
+            pre = con.prepareStatement(sql);
+            pre.setString(1, user.getUsername());
+            pre.setString(2, user.getPassword());
+            pre.setString(3, user.getFullName());
+            pre.setString(4, user.getEmail());
+            pre.setBoolean(5, user.isSendNotification());
+            pre.setInt(6, user.getRoleID());
             return pre.executeUpdate() > 0;
         } finally {
             DatabaseUtil.closeConnection(con, pre);
