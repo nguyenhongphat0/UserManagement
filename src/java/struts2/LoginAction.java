@@ -54,6 +54,10 @@ public class LoginAction {
     }
 
     public String execute() throws Exception {
+        if (username.trim().isEmpty() || password.trim().isEmpty()) {
+            message = "Enter your username and password to login";
+            return "fail";
+        }
         UserDAO dao = new UserDAO();
         UserDTO user = dao.checkLogin(username, password);
         if (user != null) {

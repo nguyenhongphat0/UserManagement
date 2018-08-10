@@ -14,7 +14,7 @@
     <body>
         <h1>Login</h1>
         <s:if test="%{message != null}">
-            <font color="red"><s:property value="message"></s:property></font>
+            <p style="color: red"><s:property value="message"></s:property></p>
         </s:if>
         <s:else>
             <p>Enter your username and password to login</p>
